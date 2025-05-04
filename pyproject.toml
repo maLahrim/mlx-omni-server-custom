@@ -1,5 +1,5 @@
 [project]
-name = "mlx-omni-server"
+name="mlx-omni-server-custom"
 version = "0.3.5"
 description = "MLX Omni Server is a server that provides OpenAI-compatible APIs using Apple's MLX framework."
 authors = [{ name = "madroid", email = "madroidmaq@gmail.com" }]
@@ -42,10 +42,10 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/madroidmaq/mlx-omni-server"
+Repository = "https://github.com/maLahrim/mlx-omni-server-custom"
 
 [project.scripts]
-mlx-omni-server = "mlx_omni_server.main:start"
+mlx-omni-server-custom = "mlx_omni_server.main:start"
 
 [dependency-groups]
 dev = [
