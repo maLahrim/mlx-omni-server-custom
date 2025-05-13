@@ -224,7 +224,9 @@ class ChatCompletionRequest(BaseModel):
     tools: Optional[List[Tool]] = None
     tool_choice: Optional[ToolChoiceType] = None
     response_format: Optional[ResponseFormat] = None
-
+    #added:
+    top_k: Optional[int] = Field(20, description="Best-practice default for sampling")
+    min_p: Optional[float] = Field(0.0, description="Best-practice minimum probability")
     # Allow any additional fields
     class Config:
         extra = "allow"  # This allows additional fields not defined in the model
@@ -244,6 +246,9 @@ class ChatCompletionRequest(BaseModel):
     def get_extra_params(self) -> Dict[str, Any]:
         """Get all extra parameters that aren't part of the standard OpenAI API."""
         standard_fields: Set[str] = {
+            "top_k",
+            "min_p",
+            #added
             "model",
             "messages",
             "temperature",
@@ -261,7 +266,12 @@ class ChatCompletionRequest(BaseModel):
             "n",
             "tools",
             "tool_choice",
+            "parallel_tool_calls",
             "stream_options",
             "response_format",
+            "user",
+            "metadata",
+            "modalities",
+            "store",
         }
         return {k: v for k, v in self.model_dump().items() if k not in standard_fields}
